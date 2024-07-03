@@ -3,8 +3,10 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import "./App.css";
 import { generarCoordenadaAleatoria, randomChoice } from './utils';
+import { BASE_URL } from "./constants/index.js"
 
-const BASEURL = "http://localhost:3000";
+
+// const BASEURL = "http://localhost:3000";
 const initialLogin = {
   "email": "sergio.molina@lumation.co",
   "password": "mayonesa12345",
@@ -56,7 +58,7 @@ function AppSocket() {
 
   useEffect(() => {
     if (login.token) {
-      socketRef.current = io(BASEURL, {
+      socketRef.current = io(BASE_URL, {
         transports: ['websocket'],
         auth: {
           token: login.token
