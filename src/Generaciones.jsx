@@ -38,10 +38,10 @@ function Generaciones() {
                 }
             });
 
-            socketRef.current.on('notifications', (notification) => {
-                console.log('Notificación recibida:', notification);
-                // Aquí puedes manejar la notificación recibida
-            });
+            // socketRef.current.on('notifications', (notification) => {
+            //     console.log('Notificación recibida:', notification);
+            //     // Aquí puedes manejar la notificación recibida
+            // });
 
             socketRef.current.on('ordersDeliveryDriver66026a78fc7df7b2bf5e839d', (order) => {
                 console.log('Orden asignada recibida:', order);
@@ -49,13 +49,13 @@ function Generaciones() {
                 setOrders(prev => [...prev, order.newOrder])
             });
 
-            socketRef.current.on('error', (err) => {
-                console.error('Error de Socket.IO:', err);
-            });
+            // socketRef.current.on('error', (err) => {
+            //     console.error('Error de Socket.IO:', err);
+            // });
 
             // Recibo actualizaciones de sucursal
-            socketRef.current.on('notifications6602696efc7df7b2bf5e8399', (notification) => {
-                setNotificaciones(prev => [...prev, notification]);
+            socketRef.current.on('notificationsByBranch6602696efc7df7b2bf5e8399', (response) => {
+                setNotificaciones(prev => [...prev, response.data]);
             });
 
             return () => {
@@ -72,6 +72,7 @@ function Generaciones() {
                 status: 'Emergencia',
                 deliverydriverId: "66026a78fc7df7b2bf5e839d",
                 branchId: "6602696efc7df7b2bf5e8399",
+                companyId: "66218369aba789f960c9ffc6",
             });
         } catch (error) {
             console.error('Error al generar notificación:', error);
@@ -93,7 +94,8 @@ function Generaciones() {
 
     const assignOrder = async () => {
         try {
-            console.log("Asignando orden")
+            console.log("Asignando orden");
+
             socketRef.current?.emit('assignOrder', {
                 orderId: "667f1bc65e0d8ae9618946a7",
                 deliveryDriver: "66026a78fc7df7b2bf5e839d",
@@ -130,7 +132,6 @@ function Generaciones() {
                     <h5>{o.code}</h5>
                     <p>id: {o._id}</p>
                     <p>Cliente: {o.clientFullName}</p>
-                    <p>Motorista: {o.assignedDriver}</p>
                 </div>
             )}
         </>

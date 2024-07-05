@@ -65,7 +65,7 @@ function AppSocket() {
         }
       });
 
-      socketRef.current.on('allOrders', (received) => {
+      socketRef.current.on('allDeliveryDrivers', (received) => {
         console.log('Nueva ruta actualizada recibida:', received);
         const { deliveryDriver, coords } = received;
 
@@ -104,7 +104,7 @@ function AppSocket() {
         });
       };
 
-      const interval = setInterval(updateRouteRandomly, 5000);
+      const interval = setInterval(updateRouteRandomly, 10000);
 
       return () => {
         clearInterval(interval);
