@@ -104,7 +104,7 @@ function AppSocket() {
         });
       };
 
-      const interval = setInterval(updateRouteRandomly, 10000);
+      const interval = setInterval(updateRouteRandomly, 5000);
 
       return () => {
         clearInterval(interval);

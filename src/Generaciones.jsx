@@ -4,8 +4,11 @@ import io from 'socket.io-client';
 import { BASE_URL } from "./constants/index.js"
 
 const initialLogin = {
-    "email": "sergio.molina@lumation.co",
-    "password": "mayonesa12345",
+    "dpi": "212121",
+    "password": "Mayonesa12345.",
+    "branch": "669840c8ddfc65129aa60547",
+    // "dpi": "viviana.calva@lumation.co",
+    // "password": "Mayonesa12345.",
     token: ""
 };
 // const BRANCH_ID = "6602696efc7df7b2bf5e8399"
@@ -79,6 +82,19 @@ function Generaciones() {
         }
     };
 
+    const sendCoordinate = async () => {
+        try {
+            const sendCoordsBody = {
+                coords: [8, 8],
+                deliveryDriver: "66026a78fc7df7b2bf5e839d"
+            };
+
+            socketRef.current.emit('updateDriverCoord', sendCoordsBody);
+        } catch (error) {
+            console.error('Error al actualizar coordenada del motorista:', error);
+        }
+    }
+
     const generateNotificationProblem = async () => {
         try {
             socketRef.current.emit('sendAdminNotification', {
@@ -109,7 +125,7 @@ function Generaciones() {
         <>
             <h1>Generaciones</h1>
             <form onSubmit={handleLogin}>
-                <input type="email" placeholder="Email" value={login.email} onChange={(e) => setLogin({ ...login, email: e.target.value })} />
+                <input type="text" placeholder="DPI" value={login.dpi} onChange={(e) => setLogin({ ...login, dpi: e.target.value })} />
                 <input type="password" placeholder="Password" value={login.password} onChange={(e) => setLogin({ ...login, password: e.target.value })} />
                 <button type="submit">Login</button>
             </form>
@@ -117,6 +133,7 @@ function Generaciones() {
             <button onClick={generateNotification}>Generar Notificación de Emergencia</button>
             <button onClick={generateNotificationProblem}>Generar Notificación con problemas</button>
             <button onClick={assignOrder}>Asignar Orden</button>
+            <button onClick={sendCoordinate}>Generar coordenadas</button>
 
             <h2>Notificaciones sucursal 6602696efc7df7b2bf5e8399</h2>
             {notificaciones.map(n =>
