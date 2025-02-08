@@ -128,8 +128,8 @@ function AppSocket() {
           <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Telf.</th>
-            <th>DPI</th>
+            {/* <th>Telf.</th> */}
+            {/* <th>DPI</th> */}
             <th>Coordenada</th>
             <th>Coordenadas</th>
           </tr>
@@ -139,8 +139,8 @@ function AppSocket() {
             <tr key={motorista.id}>
               <td>{motorista.id}</td>
               <td>{motorista.fullName}</td>
-              <td>{motorista.phone}</td>
-              <td>{motorista.dpi}</td>
+              {/* <td>{motorista.phone}</td> */}
+              {/* <td>{motorista.dpi}</td> */}
               <td>{motorista.lastCoord}</td>
               <td>{motorista.coords.join(', ')}</td>
             </tr>

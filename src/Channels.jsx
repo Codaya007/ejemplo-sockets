@@ -7,28 +7,29 @@ const socket = io(BASE_URL);
 const userID = "65b0afd9cc366fdb713b53e5"
 
 const Channels = () => {
-    const [userEvents, setUserEvents] = useState([]);
+    // const [userEvents, setUserEvents] = useState([]);
     const [adminEvents, setAdminEvents] = useState([]);
-    const [adminNotifications, setAdminNotifications] = useState([]);
+    // const [adminNotifications, setAdminNotifications] = useState([]);
     const [response, setResponse] = useState(null);
+
 
     useEffect(() => {
         // Conexión y unión a las salas
-        socket.emit("joinRoom", { userId: userID, panel: true });
+        socket.emit("joinRoom", { userId: userID, panel: true, room: "events" });
 
-        // Eventos para usuarios específicos
-        socket.on(`events/user/${userID}`, (event) => {
-            setUserEvents((prev) => [...prev, event]);
-        });
+        // // Eventos para usuarios específicos
+        // socket.on(`events/user/${userID}`, (event) => {
+        //     setUserEvents((prev) => [...prev, event]);
+        // });
 
-
-        // Notificaciones del panel admin
-        socket.on("notification", (notification) => {
-            setAdminNotifications((prev) => [...prev, notification]);
-        });
+        // // Notificaciones del panel admin
+        // socket.on("notification", (notification) => {
+        //     setAdminNotifications((prev) => [...prev, notification]);
+        // });
 
         // Eventos del panel admin
         socket.on("event", (ev) => {
+            console.log({ ev });
             setAdminEvents((prev) => [...prev, ev]);
         });
 
@@ -38,8 +39,8 @@ const Channels = () => {
         });
 
         return () => {
-            socket.off(`events/user/${userID}`);
-            socket.off("notification");
+            // socket.off(`events/user/${userID}`);
+            // socket.off("notification");
             socket.off("event");
             socket.off("response");
         };
@@ -49,7 +50,7 @@ const Channels = () => {
         <div style={{ padding: "20px" }}>
             <h2>Socket Rooms and Events</h2>
 
-            <div>
+            {/* <div>
                 <h3>User Events</h3>
                 {userEvents.length > 0 ? (
                     <ul>
@@ -62,7 +63,7 @@ const Channels = () => {
                 ) : (
                     <p>No events for this user.</p>
                 )}
-            </div>
+            </div> */}
 
             <div>
                 <h3>Eventos admin</h3>
@@ -79,7 +80,7 @@ const Channels = () => {
                 )}
             </div>
 
-            <div>
+            {/* <div>
                 <h3>Admin Notifications</h3>
                 {adminNotifications.length > 0 ? (
                     <ul>
@@ -92,7 +93,7 @@ const Channels = () => {
                 ) : (
                     <p>No admin notifications.</p>
                 )}
-            </div>
+            </div> */}
 
             {response && (
                 <div>

@@ -3,8 +3,6 @@ import io from 'socket.io-client';
 import axios from 'axios';
 import "./App.css";
 
-const BASEURL = "http://localhost:3000";
-
 function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

@@ -3,8 +3,6 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import { generarCoordenadaAleatoria, randomChoice } from './utils';
 
-const BASEURL = 'http://localhost:1337'; // Reemplaza con la URL de tu servidor Sails.js
-
 const initialLogin = {
   email: 'viviana.calva@unl.edu.ec',
   password: 'mayonesa12345',

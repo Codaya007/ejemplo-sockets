@@ -4,12 +4,18 @@ import io from 'socket.io-client';
 import { BASE_URL } from "./constants/index.js"
 
 const initialLogin = {
-    "dpi": "212121",
-    "password": "Mayonesa12345.",
-    "branch": "669840c8ddfc65129aa60547",
+    // "dpi": "212121",
+    // "password": "Mayonesa12345.",
+    // "branch": "669840c8ddfc65129aa60547",
     // "dpi": "viviana.calva@lumation.co",
     // "password": "Mayonesa12345.",
-    token: ""
+    // "password": "Mayonesa12345.",
+    // "dpi": "2323232323232",
+    // "branch": "67533acdeb183875759c467a",
+    "dpi": "444333222111",
+    "password": "Lum12345!",
+    "branch": "678aa46901f5bccd553c4e5d",
+    "token": ""
 };
 // const BRANCH_ID = "6602696efc7df7b2bf5e8399"
 
